@@ -1,5 +1,3 @@
-using namespace   std;
-
 #ifndef MATRIX_NUM_H
 #define MATRIX_NUM_H
 
@@ -49,12 +47,10 @@ MatrixNumerical<T> MatrixNumerical<T>::getCoFactor(size_t p, size_t q, size_t n)
     return cofactor;
 }
 
-
-
 template <typename T>
 T MatrixNumerical<T>::getDeterminant() const {
     if (this->rows != this->cols) {
-        throw invalid_argument("Determinant can only be calculated for square matrices.");
+        throw std::invalid_argument("Determinant can only be calculated for square matrices.");
     }
 
     size_t n = this->rows;
@@ -82,14 +78,12 @@ T MatrixNumerical<T>::getDeterminant() const {
     return determinant;
 }
 
-
-
 template <typename T>
 MatrixNumerical<T> MatrixNumerical<T>::getInverse() const {
     T det = getDeterminant();
 
     if (det == 0) {
-        throw invalid_argument("Matrix is singular, cannot compute inverse.");
+        throw std::invalid_argument("Matrix is singular, cannot compute inverse.");
     }
 
     size_t n = this->rows;
@@ -121,9 +115,6 @@ MatrixNumerical<T> MatrixNumerical<T>::getInverse() const {
     return inverse;
 }
 
-
-
-
 template <typename T>
 MatrixNumerical<T> MatrixNumerical<T>::operator/(const MatrixNumerical<T>& other) {
     return (*this) * other.getInverse();
@@ -132,7 +123,7 @@ MatrixNumerical<T> MatrixNumerical<T>::operator/(const MatrixNumerical<T>& other
 template <typename T>
 MatrixNumerical<T> MatrixNumerical<T>::operator+(const MatrixNumerical<T>& other) {
     if (this->getRows() != other.getRows() || this->getCols() != other.getCols()) {
-        throw invalid_argument("Matrix dimensions must match for addition.");
+        throw std::invalid_argument("Matrix dimensions must match for addition.");
     }
     MatrixNumerical<T> result(this->getRows(), this->getCols());
     for (size_t i = 0; i < this->getRows(); ++i) {
@@ -146,7 +137,7 @@ MatrixNumerical<T> MatrixNumerical<T>::operator+(const MatrixNumerical<T>& other
 template <typename T>
 MatrixNumerical<T> MatrixNumerical<T>::operator-(const MatrixNumerical<T>& other) {
     if (this->getRows() != other.getRows() || this->getCols() != other.getCols()) {
-        throw invalid_argument("Matrix dimensions must match for subtraction.");
+        throw std::invalid_argument("Matrix dimensions must match for subtraction.");
     }
     MatrixNumerical<T> result(this->getRows(), this->getCols());
     for (size_t i = 0; i < this->getRows(); ++i) {
@@ -160,7 +151,7 @@ MatrixNumerical<T> MatrixNumerical<T>::operator-(const MatrixNumerical<T>& other
 template <typename T>
 MatrixNumerical<T> MatrixNumerical<T>::operator*(const MatrixNumerical<T>& other) {
     if (this->getCols() != other.getRows()) {
-        throw invalid_argument("Matrix dimensions must match for multiplication.");
+        throw std::invalid_argument("Matrix dimensions must match for multiplication.");
     }
     MatrixNumerical<T> result(this->getRows(), other.getCols());
     for (size_t i = 0; i < this->getRows(); ++i) {
