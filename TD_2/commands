@@ -1,0 +1,5 @@
+#ex1
+  g++ -o main main.cpp search.cpp; ./main
+
+#ex2
+  g++ -o main main.cpp; ./main
