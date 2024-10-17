@@ -1,0 +1,5 @@
+# ex1
+# g++ main.cpp my_class.cpp -o main; ./main
+
+#ex2
+# g++ main.cpp Complex2D.cpp -o main; ./main
